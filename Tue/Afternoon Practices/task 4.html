@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 4</title>
+    <style>
+      .user-item {
+        margin-bottom: 10px;
+      }
+      .user-name {
+        width: 150px;
+        display: inline-block;
+      }
+      .remove-button {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>LIST OF USERS</h2>
+    <ul id="userList"></ul>
+
+    <script>
+      const list = [
+        'Hai Ba Trung',
+        'Le Loi',
+        'Tran Hung Dao',
+        'Nguyen Trai',
+        'Ly Thuong Kiet',
+      ];
+      const userList = document.getElementById('userList');
+
+      list.forEach((user) => {
+        // Create a new list item for each user
+        const listItem = document.createElement('li');
+        listItem.classList.add('user-item');
+        // Create a text node with the user's name
+        const userName = document.createElement('span');
+        userName.textContent = user;
+        userName.classList = 'user-name';
+        // Create a button to remove the user
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Delete';
+        removeButton.classList = 'remove-button';
+        // Handle the click event to remove the user
+        removeButton.addEventListener('click', () => {
+          userList.removeChild(listItem);
+        });
+        listItem.appendChild(userName);
+        listItem.appendChild(removeButton);
+        userList.appendChild(listItem);
+      });
+    </script>
+  </body>
+</html>

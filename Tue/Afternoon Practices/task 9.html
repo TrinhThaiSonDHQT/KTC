@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 9</title>
+  </head>
+  <body>
+    <p id="clockDisplay"></p>
+
+    <script>
+      const clockDisplay = document.getElementById('clockDisplay');
+      // Update the clock every second
+      setInterval(() => {
+        const now = new Date();
+        // Format the time as HH:MM:SS
+        // Ensure two digits for hours, minutes, and seconds
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        clockDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+      }, 1000);
+    </script>
+  </body>
+</html>

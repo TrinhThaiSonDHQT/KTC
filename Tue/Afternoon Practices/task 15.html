@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 15</title>
+  </head>
+  <body>
+    <textarea id="bioInput" placeholder="Enter something" maxlength="200"></textarea>
+    <p id="charCount"></p>
+
+    <script>
+      const bioInput = document.getElementById('bioInput');
+      const charCount = document.getElementById('charCount');
+
+      // Function to update character count
+      const updateCharCount = () => {
+        const remainingChars = 200 - bioInput.value.length;
+        charCount.textContent = `Remaining characters: ${remainingChars}`;
+      };
+
+      // Initial character count
+      updateCharCount();
+
+      // Add event listener for input changes
+      bioInput.addEventListener('input', updateCharCount);
+    </script>
+  </body>
+</html>
