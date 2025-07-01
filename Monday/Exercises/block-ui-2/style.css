@@ -1,0 +1,115 @@
+:root {
+  --font-weight-bold: 700;
+  --default-font-size: 1.8em;
+  --large-font-size: 2.3em;
+
+  --container-padding: 30px;
+
+  /* Header */
+  --header-height: 700px;
+  --header-font-color: white;
+  --profile-avatar-size: 200px;
+  --profile-info-margin-left: 20px;
+  --info-name-margin-bottom: 10px;
+
+  /* Indicator */
+  --indicator-padding: 20px;
+  --indicator-label-color: #838383;
+  --indicator-value-padding: 12px;
+  --indicator-value-border-radius: 8px;
+  --indicator-value-red: red;
+  --indicator-value-blue: blue;
+  --indicator-value-green: green;
+  --indicator-value-yellow: yellow;
+  --indicator-value-purple: purple;
+
+}
+
+.container {
+  padding: var(--container-padding);
+}
+
+.header {
+  position: relative;
+  height: var(--header-height);
+  color: var(--header-font-color);
+}
+
+.header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header .profile {
+  position: absolute;
+  bottom: 100px;
+  left: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.header .profile img {
+  width: var(--profile-avatar-size);
+  height: var(--profile-avatar-size);
+  border-radius: 50%;
+}
+
+.header .profile-info {
+  margin-left: var(--profile-info-margin-left);
+}
+
+.header .profile-info p {
+  margin: 0;
+}
+
+.header .profile-info .info-name {
+  font-size: var(--large-font-size);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--info-name-margin-bottom);
+}
+
+.header .profile-info .info-position {
+  font-size: var(--default-font-size);
+}
+
+.indicator {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--indicator-padding);
+  border: 1px solid #ccc;
+}
+
+.indicator .indicator-label {
+  font-size: var(--large-font-size);
+  color: var(--indicator-label-color);
+  text-transform: uppercase;
+}
+
+.indicator .indicator-value {
+  font-size: var(--default-font-size);
+  color: var(--header-font-color);
+  padding: var(--indicator-value-padding);
+  background-color: var(--indicator-value-blue);
+  border-radius: var(--indicator-value-border-radius);
+}
+
+.indicator #red {
+  background-color: var(--indicator-value-red);
+}
+
+.indicator #blue {
+  background-color: var(--indicator-value-blue);
+}
+
+.indicator #green {
+  background-color: var(--indicator-value-green);
+}
+
+.indicator #yellow {
+  background-color: var(--indicator-value-yellow);
+}
+
+.indicator #purple {
+  background-color: var(--indicator-value-purple);
+}
