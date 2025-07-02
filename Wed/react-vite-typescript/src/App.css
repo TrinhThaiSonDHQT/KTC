@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  gap: 20px;
+}
+
+.row {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background-color: #e2e9ee;
+  border-radius: 15px;
+}

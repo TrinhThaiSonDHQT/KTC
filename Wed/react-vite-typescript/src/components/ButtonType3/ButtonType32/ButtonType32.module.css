@@ -1,0 +1,68 @@
+.buttonType32 {
+  width: 100%;
+  min-height: 83px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  /* flex-direction: row-reverse; */
+  justify-content: space-between;
+}
+
+.left .image {
+  margin-right: 10px;
+}
+
+.left .small-imgage {
+  width: 35px;
+  height: 35px;
+}
+
+.left .medium-imgage {
+  width: 42px;
+  height: 42px;
+}
+
+.left .large-image {
+  width: 56px;
+  height: 56px;
+}
+
+.right p {
+  margin: 0;
+}
+
+.right .title .title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.right .title .subtitle {
+  font-size: 14px;
+}
+
+.right .endIcon {
+  font-size: 1.6em;
+}
+
+.items-end {
+  align-items: flex-end;
+  .left .image {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+.right .title2 .title2 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.right .title2 .subtitle2 {
+  font-size: 9px;
+}
