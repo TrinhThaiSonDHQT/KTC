@@ -1,9 +1,9 @@
-import phone from '../assets/images/samsung-galaxy-a32-4g.jpg';
+import productImgae from '../assets/images/images-list-5/1.jpg';
 
 const Card3Props = {
   product1: {
     sale: 20,
-    image: phone,
+    image: productImgae,
     shopName: 'YOUNG SHOP',
     newPrice: '1,422.7',
     oldPrice: '1,025.5',
@@ -13,7 +13,7 @@ const Card3Props = {
   },
   product2: {
     sale: 20,
-    image: phone,
+    image: productImgae,
     shopName: 'YOUNG SHOP',
     newPrice: '1,422.7',
     oldPrice: '1,025.5',
@@ -23,7 +23,7 @@ const Card3Props = {
   },
   product3: {
     sale: 20,
-    image: phone,
+    image: productImgae,
     shopName: 'YOUNG SHOP',
     newPrice: '1,422.7',
     oldPrice: '1,025.5',
@@ -33,7 +33,7 @@ const Card3Props = {
   },
   product4: {
     sale: 20,
-    image: phone,
+    image: productImgae,
     shopName: 'YOUNG SHOP',
     newPrice: '1,422.7',
     oldPrice: '1,025.5',

@@ -33,7 +33,7 @@ const Card3 = ({
           src={image}
           alt="image"
           title="image"
-          className="w-[80%] mx-auto mt-2 mb-[25px]"
+          className="mt-2 mb-[25px]"
         />
       </div>
 
