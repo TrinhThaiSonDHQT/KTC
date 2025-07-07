@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 13</title>
+    <style>
+      #formSubmit {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      #nameError {
+        padding: 5px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <input type="text" id="nameInput" placeholder="Enter your name" />
+      <button id="formSubmit" type="submit">Submit</button>
+      <br />
+      <span id="nameError"></span>
+    </form>
+
+    <script>
+      const form = document.querySelector('form');
+      const nameInput = document.getElementById('nameInput');
+      const formSubmit = document.getElementById('formSubmit');
+      const nameError = document.getElementById('nameError');
+
+      form.onsubmit = (event) => {
+        event.preventDefault(); // Prevent form submission
+        const name = nameInput.value;
+
+        if (!name) {
+          nameError.textContent = 'Please enter your name.';
+          nameError.style.border = '1px solid red';
+        }
+      };
+    </script>
+  </body>
+</html>

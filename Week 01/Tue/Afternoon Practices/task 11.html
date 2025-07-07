@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 11</title>
+  </head>
+  <body>
+    <button id="hideParaBtn">Hide Paragraph</button>
+    <p id="infoPara">Hide the paragraph when button is clicked.</p>
+
+    <script>
+      const hideParaBtn = document.getElementById('hideParaBtn');
+      const paragraph = document.getElementById('infoPara');
+
+      hideParaBtn.addEventListener('click', () => {
+        paragraph.style.display = 'none';
+      });
+    </script>
+  </body>
+</html>

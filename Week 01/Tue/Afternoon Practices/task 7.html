@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 7</title>
+  </head>
+  <body>
+    <button class="colorBtn">RED</button>
+    <button class="colorBtn">GREEN</button>
+    <button class="colorBtn">BLUE</button>
+    <button class="colorBtn">YELLOW</button>
+    <button class="colorBtn">PURPLE</button>
+
+    <script>
+      const buttons = document.querySelectorAll('.colorBtn');
+      buttons.forEach((button) => {
+        button.onclick = () => {
+          alert(button.textContent);
+        };
+      });
+    </script>
+  </body>
+</html>

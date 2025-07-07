@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 10</title>
+    <style>
+      #emailInput {
+        margin-right: 10px;
+        padding: 5px;
+      }
+      #validateBtn {
+        padding: 5px 10px;
+      }
+      #errorMessage {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="email" id="emailInput" />
+    <button id="validateBtn">Check Email</button>
+    <p id="errorMessage"></p>
+
+    <script>
+      const validateEmail = (email) => {
+        const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return pattern.test(email);
+      };
+
+      const emailInput = document.getElementById('emailInput');
+      const validateBtn = document.getElementById('validateBtn');
+      const errorMessage = document.getElementById('errorMessage');
+
+      validateBtn.addEventListener('click', () => {
+        const email = emailInput.value.trim().toLowerCase();
+
+        if (validateEmail(email)) {
+          errorMessage.textContent = '';
+          alert('Valid email!');
+        } else {
+          errorMessage.textContent = 'Invalid email format.';
+        }
+      });
+    </script>
+  </body>
+</html>

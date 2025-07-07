@@ -1,0 +1,7 @@
+.dropDownList {
+  display: none;
+}
+
+.cart:hover .dropDownList {
+  display: block;
+}

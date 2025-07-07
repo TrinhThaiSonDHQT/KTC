@@ -1,0 +1,107 @@
+:root {
+  --container-padding: 30px 20px;
+  --default-font-size: 0.8em;
+  --medium-font-size: 1em;
+  --large-font-size: 2.6em;
+  --lightgray-color: #bbb8c1;
+  --gray-color: #8e9299;
+  --lightblue-color: #59cbe2;
+  --red-color: red;
+  --green-color: green;
+  --yellow-color: yellow;
+  --orange-color: orange;
+  --border-radius: 10px;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --card-width: 270px;
+  --card-padding: 15px 25px;
+  --card-p-margin-bottom: 10px;
+  --bar-container-margin-right: 20px;
+  --bar-width: 20px;
+  --bar-height: 60px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--container-padding);
+}
+
+.card {
+  width: var(--card-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: var(--card-padding);
+}
+
+.card p {
+  margin: 0;
+}
+
+.card .card-title {
+  font-size: var(--medium-font-size);
+  color: var(--gray-color);
+  margin-bottom: var(--card-p-margin-bottom);
+}
+
+.card .card-total {
+  font-size: var(--large-font-size);
+  color: var(--lightblue-color);
+  margin-bottom: var(--card-p-margin-bottom);
+}
+
+.card .card-bars {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--default-font-size);
+  color: var(--lightgray-color);
+}
+
+.card .card-bars .bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: var(--bar-container-margin-right);
+}
+
+.card .card-bars .bar {
+  width: var(--bar-width);
+  height: var(--bar-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-bottom: 5px;
+  border: 1px solid var(--lightgray-color);
+}
+
+.card .bar .progress {
+  width: 100%;
+}
+
+.card .bar .mon {
+  height: 30%;
+  background-color: var(--red-color);
+}
+
+.card .bar .tue {
+  height: 20%;
+  background-color: var(--green-color);
+}
+
+.card .bar .wed {
+  height: 80%;
+  background-color: var(--yellow-color);
+}
+
+.card .bar .thu {
+  height: 85%;
+  background-color: var(--lightblue-color);
+}
+
+.card .bar .fri {
+  height: 60%;
+  background-color: var(--orange-color);
+}

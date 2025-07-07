@@ -1,0 +1,32 @@
+.DefaultButton {
+  width: 280px;
+  min-height: 51px;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.bg-light {
+  background-color: white;
+  color: black;
+}
+
+.bg-dark {
+  background-color: black;
+  color: white;
+}
+
+.bg-light-yellow {
+  background-color: #faffdb;
+  color: black;
+}
+
+.bg-light-red {
+  background-color: #ff512f;
+  color: white;
+}
+
+.outline {
+  border: 2px solid black;
+}

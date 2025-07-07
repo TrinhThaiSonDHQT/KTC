@@ -1,0 +1,9 @@
+.progressBar::-webkit-progress-bar {
+  background-color: rgb(201, 201, 201);
+  border-radius: 7px;
+}
+
+.progressBar::-webkit-progress-value {
+  background-color: rgb(57, 57, 247);
+  border-radius: 7px;
+}

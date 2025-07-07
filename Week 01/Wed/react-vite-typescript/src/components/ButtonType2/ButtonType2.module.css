@@ -1,0 +1,29 @@
+.buttonType2 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.buttonType2 .left {
+  display: flex;
+  align-items: center;
+}
+
+.left .icon {
+  margin-right: 5px;
+}
+
+.left .input {
+  outline: none;
+  border: none;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.left .input::placeholder {
+  color: #999;
+  font-size: 0.8em;
+  font-weight: 400;
+}

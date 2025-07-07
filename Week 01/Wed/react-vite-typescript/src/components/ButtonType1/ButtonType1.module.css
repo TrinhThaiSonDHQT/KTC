@@ -1,0 +1,22 @@
+.buttonType1 {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.hasEndIcon {
+  justify-content: space-between;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.left .icon {
+  margin-right: 15px;
+}
