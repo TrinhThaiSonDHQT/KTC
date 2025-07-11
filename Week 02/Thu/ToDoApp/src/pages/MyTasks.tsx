@@ -21,7 +21,7 @@ const MyTasks = () => {
 
   return (
     <div>
-      <Table tasks={userTasks} />
+      <Table tasks={userTasks} actionSection={true}/>
     </div>
   );
 };

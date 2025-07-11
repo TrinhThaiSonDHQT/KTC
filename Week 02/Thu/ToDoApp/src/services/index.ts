@@ -20,10 +20,8 @@ export const getTasks = async () => {
   return await res.json();
 }
 
-export const getUserTasks = async (userId: number) => {  
-  console.log(`${baseUrl}/workspaces/tasks/${userId}`);
-  
-  const res = await fetch(`${baseUrl}/workspaces/tasks/${userId}`, {
+export const getUserTasks = async (userId: number) => {   
+  const res = await fetch(`${baseUrl}/workspaces/tasks/assignee/${userId}`, {
     method: 'GET',
     headers: defaultHeader,
   });
@@ -31,4 +29,13 @@ export const getUserTasks = async (userId: number) => {
     throw new Error('Failed to fetch tasks');
   } 
   return await res.json();
+}
+
+export const getTaskByID = async (taskId: number | null) => {   
+  const res = await fetch(`${baseUrl}/workspaces/tasks/${taskId}`, {
+    method: 'GET',
+    headers: defaultHeader,
+  });
+  // console.log(res); 
+  return res;
 }

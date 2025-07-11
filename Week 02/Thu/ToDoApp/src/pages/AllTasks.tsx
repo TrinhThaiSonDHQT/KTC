@@ -3,7 +3,7 @@ import { getTasks } from '../services';
 import Table from '../components/Table';
 
 export type Task = {
-  id: number;
+  id: number | null;
   created_time: string;
   updated_time: string;
   deleted_time: string | null;
@@ -17,9 +17,11 @@ export type Task = {
   completed_date: string | null;
   priority: string;
   status: string;
-  assignee_id: number;
+  assignee_id: number | null | undefined;
   parent_id: string | null;
   project_id: string | null;
+  comments?: [] | null;
+  attachments?: [] | null;
 };
 
 const AllTasks = () => {
@@ -28,7 +30,6 @@ const AllTasks = () => {
   useEffect(() => {
     const getAllTasks = async () => {
       const res = await getTasks();
-      // console.log(res);
       setTasks(res);
     };
 
@@ -36,7 +37,9 @@ const AllTasks = () => {
   }, []);
 
   return (
-    <div>{tasks.length > 0 && <Table tasks={tasks} />}</div>
+    <div className="all-tasks">
+      {tasks.length > 0 && <Table tasks={tasks} />}
+    </div>
   );
 };
 

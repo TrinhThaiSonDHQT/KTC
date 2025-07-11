@@ -21,12 +21,12 @@ const links = [
     path: 'create-task',
     text: 'Create Task',
   },
-  {
-    id: 3,
-    path: 'update-task',
-    text: 'Update Task',
-    params: true,
-  },
+  // {
+  //   id: 3,
+  //   path: 'update-task',
+  //   text: 'Update Task',
+  //   params: true,
+  // },
 ];
 
 const Layout = () => {

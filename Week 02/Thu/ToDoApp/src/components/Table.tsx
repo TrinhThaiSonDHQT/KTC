@@ -1,64 +1,102 @@
+import { useState } from 'react';
 import type { Task } from '../pages/AllTasks';
+import { getTaskByID } from '../services';
+import UpdateForm from './UpdateForm';
 
 type Props = {
   tasks: Task[];
+  actionSection?: boolean;
 };
 
-const Table = ({ tasks }: Props) => {
-  // console.log(tasks);
-  
+const Table = ({ tasks, actionSection = false }: Props) => {
+  const [task, setTask] = useState<Task | null>(null);
+
+  const handleCLick = async (taskID: number | null) => {
+    console.log(actionSection);
+    
+    if (actionSection) {
+      const res = await getTaskByID(taskID);
+      if (!res.ok) {
+        throw new Error('Failed to fetch tasks');
+      } else {
+        const data = await res.json();
+        // console.log(data);
+        setTask(data);
+      }
+    }
+  };
+
+  const handleHideForm = () => {
+    setTask(null);
+  }
+
   return (
-    <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
-      <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-        <tr>
-          {tasks.length > 0 &&
-            Object.entries(tasks[0]).map((item, index) => {
-              return (
-                <th key={index} scope="col" className="px-3 py-2">
-                  {item[0]}
-                </th>
-              );
-            })}
-        </tr>
-      </thead>
-      <tbody>
-        {tasks.map((item) => {
-          return (
-            <tr
-              key={item.id}
-              className="bg-white border-b border-gray-200 cursor-pointer hover:bg-gray-200"
-            >
-              {Object.entries(item).map((item, index) => {
-                if (
-                  item[0] === 'created_time' ||
-                  item[0] === 'updated_time' ||
-                  item[0] === 'start_date' ||
-                  item[0] === 'due_date'
-                ) {
-                  if (item[1]) {
-                    item[1] = new Date(item[1]).toISOString().substring(0, 10);
-                  }
-                }
+    <>
+      {tasks.length > 0 ? (
+        <div className='relative'>
+          {task && <UpdateForm task={task} onHideForm={handleHideForm}/>}
+
+          <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+              <tr>
+                {tasks.length > 0 &&
+                  Object.entries(tasks[0]).map((item, index) => {
+                    return (
+                      <th key={index} scope="col" className="px-3 py-2">
+                        {item[0]}
+                      </th>
+                    );
+                  })}
+              </tr>
+            </thead>
+            <tbody>
+              {tasks.map((item) => {
                 return (
-                  <td key={index} className="text-center px-3 py-2">
-                    {item[1] ? item[1] : 'empty'}
-                  </td>
+                  <tr
+                    key={item.id}
+                    className="bg-white border-b border-gray-200 cursor-pointer hover:bg-gray-200"
+                    onClick={() => handleCLick(item.id)}
+                  >
+                    {Object.entries(item).map((item, index) => {
+                      if (
+                        item[0] === 'created_time' ||
+                        item[0] === 'updated_time' ||
+                        item[0] === 'start_date' ||
+                        item[0] === 'due_date'
+                      ) {
+                        if (item[1] && typeof item[1] === 'string') {
+                          item[1] = new Date(item[1])
+                            .toISOString()
+                            .substring(0, 10);
+                        }
+                      }
+                      return (
+                        <td key={index} className="text-center px-3 py-2">
+                          {item[1] ? item[1] : 'empty'}
+                        </td>
+                      );
+                    })}
+  
+                    {actionSection && (
+                      <td className="px-6 py-4 flex flex-col gap-2">
+                        <button className="cursor-pointer p-2 rounded text-white font- bg-blue-600">
+                          Edit
+                        </button>
+                        <button className="cursor-pointer p-2 rounded text-white font-semibold bg-red-600">
+                          Delete
+                        </button>
+                      </td>
+                    )}
+                  </tr>
                 );
               })}
-
-              {/* <td className="px-6 py-4 flex flex-col gap-2">
-                <button className="cursor-pointer p-2 rounded text-white font- bg-blue-600">
-                  Edit
-                </button>
-                <button className="cursor-pointer p-2 rounded text-white font-semibold bg-red-600">
-                  Delete
-                </button>
-              </td> */}
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+            </tbody>
+          </table>        
+        </div>
+      ) : (
+        <span>You don't have any tasks</span>
+      )}
+    </>
   );
 };
 
