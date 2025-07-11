@@ -1,8 +1,10 @@
 import { Outlet } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { login } from '../services';
-import { AuthContext } from '../contexts';
+import { AuthContext } from '../contexts/AuthContextProvider';
 
 const links = [
   {
@@ -21,17 +23,11 @@ const links = [
     path: 'create-task',
     text: 'Create Task',
   },
-  // {
-  //   id: 3,
-  //   path: 'update-task',
-  //   text: 'Update Task',
-  //   params: true,
-  // },
 ];
 
 const Layout = () => {
-  const [selected, setSelected] = useState(0);
   const authContext = useContext(AuthContext);
+  const location = useLocation();
 
   const handleLogin = async () => {
     const res = await login('tungnt@softech.vn', '123456789');
@@ -41,8 +37,8 @@ const Layout = () => {
           isAuthenticated: res.loggedInUser.isActive,
           user: {
             id: res.loggedInUser.id,
-            email: res.loggedInUser.email
-          }
+            email: res.loggedInUser.email,
+          },
         });
       }
     }
@@ -56,7 +52,8 @@ const Layout = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="relative p-4">
+      <ToastContainer />
       <h1 className="text-5xl font-bold text-center">To Do App</h1>
       <div className="flex flex-col gap-4">
         {authContext?.auth && authContext.auth.isAuthenticated ? (
@@ -76,9 +73,8 @@ const Layout = () => {
                   <li
                     key={item.id}
                     className={`${
-                      selected === item.id ? 'border-b-2' : ''
+                      location.pathname === '/' + path ? 'border-b-2' : ''
                     } border-indigo-600`}
-                    onClick={() => setSelected(item.id)}
                   >
                     <Link to={path}>{item.text}</Link>
                   </li>

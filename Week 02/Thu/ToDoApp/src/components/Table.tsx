@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import 'reactjs-popup/dist/index.css';
+
 import type { Task } from '../pages/AllTasks';
 import { getTaskByID } from '../services';
 import UpdateForm from './UpdateForm';
@@ -11,9 +13,7 @@ type Props = {
 const Table = ({ tasks, actionSection = false }: Props) => {
   const [task, setTask] = useState<Task | null>(null);
 
-  const handleCLick = async (taskID: number | null) => {
-    console.log(actionSection);
-    
+  const showForm = async (taskID: any) => {
     if (actionSection) {
       const res = await getTaskByID(taskID);
       if (!res.ok) {
@@ -28,61 +28,64 @@ const Table = ({ tasks, actionSection = false }: Props) => {
 
   const handleHideForm = () => {
     setTask(null);
-  }
+  };
+
+  // const handleDeleteTask = (
+  //   event: React.MouseEvent<HTMLButtonElement>,
+  //   taskID: any
+  // ) => {
+  //   event.stopPropagation();
+  // };
 
   return (
     <>
       {tasks.length > 0 ? (
-        <div className='relative'>
-          {task && <UpdateForm task={task} onHideForm={handleHideForm}/>}
-
+        <div>
+          {task && <UpdateForm task={task} onHideForm={handleHideForm} />}
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-              <tr>
-                {tasks.length > 0 &&
-                  Object.entries(tasks[0]).map((item, index) => {
-                    return (
-                      <th key={index} scope="col" className="px-3 py-2">
-                        {item[0]}
-                      </th>
-                    );
-                  })}
+            <thead>
+              <tr className="text-base text-gray-700 uppercase bg-gray-200">
+                <th className="px-6 py-2">ID</th>
+                <th className="px-6 py-2">Title</th>
+                <th className="px-6 py-2">Description</th>
+                <th className="px-6 py-2">Status</th>
+                <th className="px-6 py-2">Priority</th>
+                <th className="px-6 py-2">Due Date</th>
+                <th className="px-6 py-2">Assignee</th>
+                {actionSection && <th className="px-6 py-2">Actions</th>}
               </tr>
             </thead>
             <tbody>
-              {tasks.map((item) => {
+              {tasks.map((task) => {
                 return (
                   <tr
-                    key={item.id}
+                    key={task.id}
                     className="bg-white border-b border-gray-200 cursor-pointer hover:bg-gray-200"
-                    onClick={() => handleCLick(item.id)}
+                    onClick={() => showForm(task.id)}
                   >
-                    {Object.entries(item).map((item, index) => {
-                      if (
-                        item[0] === 'created_time' ||
-                        item[0] === 'updated_time' ||
-                        item[0] === 'start_date' ||
-                        item[0] === 'due_date'
-                      ) {
-                        if (item[1] && typeof item[1] === 'string') {
-                          item[1] = new Date(item[1])
-                            .toISOString()
-                            .substring(0, 10);
-                        }
-                      }
-                      return (
-                        <td key={index} className="text-center px-3 py-2">
-                          {item[1] ? item[1] : 'empty'}
-                        </td>
-                      );
-                    })}
-  
+                    <td className="px-6 py-4">{task.id}</td>
+                    <td className="px-6 py-4">{task.title}</td>
+                    <td className="px-6 py-4">{task.description}</td>
+                    <td className="px-6 py-4">{task.status}</td>
+                    <td className="px-6 py-4">{task.priority}</td>
+                    <td className="px-6 py-4">
+                      {task.due_date
+                        ? new Date(task.due_date).toLocaleDateString()
+                        : ''}
+                    </td>
+                    <td className="px-6 py-4">{task.assignee_id}</td>
                     {actionSection && (
-                      <td className="px-6 py-4 flex flex-col gap-2">
-                        <button className="cursor-pointer p-2 rounded text-white font- bg-blue-600">
+                      <td className="py-4 flex gap-2">
+                        <button
+                          className="cursor-pointer min-w-[80px] py-2 rounded text-white font- bg-blue-600"
+                          onClick={() => showForm(task.id)}
+                        >
                           Edit
                         </button>
-                        <button className="cursor-pointer p-2 rounded text-white font-semibold bg-red-600">
+                        <button
+                          className="cursor-pointer min-w-[80px] py-2 rounded text-white font-semibold bg-red-600"
+                          // onClick={(e) => handleDeleteTask(e, task.id)}
+                        >
                           Delete
                         </button>
                       </td>
@@ -91,7 +94,7 @@ const Table = ({ tasks, actionSection = false }: Props) => {
                 );
               })}
             </tbody>
-          </table>        
+          </table>
         </div>
       ) : (
         <span>You don't have any tasks</span>

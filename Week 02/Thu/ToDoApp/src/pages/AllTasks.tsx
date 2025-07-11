@@ -3,25 +3,25 @@ import { getTasks } from '../services';
 import Table from '../components/Table';
 
 export type Task = {
-  id: number | null;
-  created_time: string;
-  updated_time: string;
-  deleted_time: string | null;
-  created_by: string | number;
-  updated_by: 1;
-  deleted_by: string | null;
+  id?: string | number;
+
   title: string;
-  description: string | null;
-  start_date: string;
-  due_date: string;
-  completed_date: string | null;
-  priority: string;
-  status: string;
-  assignee_id: number | null | undefined;
-  parent_id: string | null;
-  project_id: string | null;
-  comments?: [] | null;
-  attachments?: [] | null;
+  description?: string;
+
+  start_date: Date;
+  due_date?: Date;
+
+  status: 'to_do' | 'in_progress' | 'done';
+  completed_date?: Date;
+  priority: 'low' | 'medium' | 'high';
+
+  assignee_id?: number;
+
+  created_by?: number;
+  created_time: Date;
+
+  updated_by?: number;
+  updated_time: Date;
 };
 
 const AllTasks = () => {

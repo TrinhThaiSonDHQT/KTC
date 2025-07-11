@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { login } from '../services';
-import { AuthContext } from '../contexts';
+import { AuthContext } from '../contexts/AuthContextProvider';
 import { Outlet } from 'react-router-dom';
 
 const links = [
