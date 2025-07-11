@@ -73,7 +73,10 @@ const Layout = () => {
                   <li
                     key={item.id}
                     className={`${
-                      location.pathname === '/' + path ? 'border-b-2' : ''
+                      location.pathname === '/' + path ||
+                      (location.pathname === '/' && path === 'all-tasks')
+                        ? 'border-b-2'
+                        : ''
                     } border-indigo-600`}
                   >
                     <Link to={path}>{item.text}</Link>
