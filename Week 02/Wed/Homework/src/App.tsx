@@ -4,19 +4,6 @@ import * as yup from 'yup';
 
 import './App.css';
 
-type Inputs = {
-  userName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  phoneNumber: string;
-  birthday: string;
-  gender: string;
-  country: string;
-  hobbies: (string | undefined)[] | undefined;
-  bio: string | undefined;
-};
-
 const schema = yup
   .object({
     userName: yup
