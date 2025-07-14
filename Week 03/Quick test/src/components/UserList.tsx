@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { UserContext } from '../contexts';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const UserList = () => {
   const usersContext = useContext(UserContext);
