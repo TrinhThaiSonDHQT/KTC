@@ -4,7 +4,7 @@ import { UserContext } from '../contexts';
 import type { User } from '../contexts';
 
 const UserDetail = () => {
-  const { userId } = useParams();
+  const { id } = useParams();
   const [user, setUser] = useState<User>({
     id: null,
     name: '',
@@ -12,23 +12,21 @@ const UserDetail = () => {
     age: null,
   });
   const usersContext = useContext(UserContext);
+  console.log(id);
 
   useEffect(() => {
-    if (userId) {
-      const convertUserId = Number.parseInt(userId);
+    if (id) {
       const user = usersContext?.users.find((user: User) => {
-        return user.id === convertUserId;
+        return user.id === id;
       });
       console.log(user);
-      
+
       if (user) {
         setUser(user);
       }
     }
   }, []);
 
-  console.log(user);
-  
   return (
     <div>
       {user ? (

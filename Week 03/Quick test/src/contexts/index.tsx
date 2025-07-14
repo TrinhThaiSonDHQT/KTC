@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react';
 
 export type User = {
-  id: number | null;
+  id: number | string | null;
   name: string;
   email: string;
   age: number | null;
