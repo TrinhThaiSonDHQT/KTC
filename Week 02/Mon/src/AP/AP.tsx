@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import FormUpdateUser from '../Components/FormUpdateUser';
-import { getUsersApi } from '../services';
+import { deleteUser, getUserById, getUsersApi, updateUser } from '../services';
 
 export type User = {
-  id?: number;
+  id: number;
   firstName: string;
   lastName: string;
   email: string;
@@ -15,72 +15,47 @@ export type User = {
 
 const AP = () => {
   const [users, setUsers] = useState<User[]>([]);
-  const [selectedUser, setSelectedUser] = useState(null);
-  const [showForm, setShowForm] = useState({
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [form, setForm] = useState({
     showForm: false,
     type: 'Create New User',
   });
 
   const showFormCreateUser = () => {
-    setShowForm({ showForm: true, type: 'Create New User' });
+    setForm({ showForm: true, type: 'Create New User' });
   };
 
-  const showFormUpdateUser = async (userID?: number) => {
+  const showFormUpdateUser = async (userID: number) => {
     try {
-      await fetch(`https://server.aptech.io/online-shop/customers/${userID}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => {
-          // Check if the response was successful (e.g., status code 200-299)
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          // Parse the response body as JSON
-          return response.json();
-        })
-        .then((data) => {
-          setSelectedUser(data);
-          setShowForm((prev) => ({
-            ...prev,
-            showForm: true,
-            type: 'Update User',
-          }));
-        });
+      const response = await getUserById(userID);
+      if (response.error || response.message) {
+        throw new Error(response.message);
+      } else {
+        setSelectedUser(response);
+        setForm({ showForm: true, type: 'Update User' });
+      }
     } catch (error) {
       console.log(error);
     } finally {
-      console.log('Get users successfully!');
+      console.log('Get user by id successfully!');
     }
   };
 
-  const handleUpdateUser = async (user: User) => {
-    const userCopy = { ...user };
-    delete userCopy.id;
+  const handleUpdateUser = async (user: any) => {
+    // console.log(user);
     try {
-      await fetch(`https://server.aptech.io/online-shop/customers/${user.id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userCopy),
-      })
-        .then((response) => {
-          // Check if the response was successful (e.g., status code 200-299)
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          // Parse the response body as JSON
-          return response.json();
-        })
-        .then((data) => {
-          console.log(data);
+      if (selectedUser) {
+        const response = await updateUser(selectedUser.id, user);
+        if (response.error || response.message) {
+          throw new Error(response.message);
+        } else {
+          console.log(response);
+          user.id = selectedUser.id;
           setUsers((prev) => {
             return prev.map((item) => (item.id === user.id ? user : item));
           });
-        });
+        }
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -88,23 +63,12 @@ const AP = () => {
     }
   };
 
-  const handleDeleteUser = async (userID?: number) => {
+  const handleDeleteUser = async (userID: number) => {
     try {
-      await fetch(`https://server.aptech.io/online-shop/customers/${userID}`, {
-        method: 'DELETE',
-      })
-        .then((response) => {
-          // Check if the response was successful (e.g., status code 200-299)
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          // Parse the response body as JSON
-          return response.json();
-        })
-        .then((data) => {
-          console.log(data);
-          setUsers((prev) => prev.filter((user) => user.id !== userID));
-        });
+      const response = await deleteUser(userID);
+      if (response.message === 'Customer deleted successfully') {
+        setUsers((prev) => prev.filter((user) => user.id !== userID));
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -148,7 +112,7 @@ const AP = () => {
         // console.log(response);
 
         if (response.error || response.message) {
-          throw new Error('Error!');
+          throw new Error(response.message);
         } else {
           setUsers(response);
         }
@@ -236,19 +200,14 @@ const AP = () => {
         </tbody>
       </table>
 
-      {showForm.showForm && (
-        <div
-          className="absolute top-[50%] left-[50%]"
-          style={{ transform: 'translate(-50%,-50%)' }}
-        >
+      {form.showForm && (
+        <div className="absolute top-0 left-[35%]">
           <FormUpdateUser
             user={selectedUser}
-            onHideForm={() =>
-              setShowForm((prev) => ({ ...prev, showForm: false }))
-            }
+            onHideForm={() => setForm((prev) => ({ ...prev, showForm: false }))}
             onUpdateUserInfo={handleUpdateUser}
             onCreatUser={handleCreateUser}
-            typeOfForm={showForm.type}
+            typeOfForm={form.type}
           />
         </div>
       )}

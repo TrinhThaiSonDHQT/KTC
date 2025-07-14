@@ -17,7 +17,6 @@ const FormUpdateUser = ({
   typeOfForm,
 }: Props) => {
   const [userInputs, setUserInputs] = useState({
-    id: user?.id,
     firstName: user?.firstName,
     lastName: user?.lastName,
     phoneNumber: user?.phoneNumber,
