@@ -1,6 +1,6 @@
 import './App.css';
-import AP from './Components/AP/AP';
-import Homework from './Components/Homework/Homework';
+import AP from './AP/AP';
+import Homework from './Homework/Homework';
 
 function App() {
   return (

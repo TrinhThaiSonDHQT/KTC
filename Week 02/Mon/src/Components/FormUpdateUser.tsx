@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { User } from './AP';
+import type { User } from '../AP/AP';
 
 type Props = {
   user?: User | null;

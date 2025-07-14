@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import FormUpdateUser from './FormUpdateUser';
+import FormUpdateUser from '../Components/FormUpdateUser';
+import { getUsersApi } from '../services';
 
 export type User = {
   id?: number;
@@ -143,27 +144,18 @@ const AP = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        await fetch('https://server.aptech.io/online-shop/customers', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-          .then((response) => {
-            // Check if the response was successful (e.g., status code 200-299)
-            if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            // Parse the response body as JSON
-            return response.json();
-          })
-          .then((data) => {
-            setUsers(data);
-          });
+        const response = await getUsersApi();
+        // console.log(response);
+
+        if (response.error || response.message) {
+          throw new Error('Error!');
+        } else {
+          setUsers(response);
+        }
       } catch (error) {
-        // throw new Error(error);
+        console.log(error);
       } finally {
-        console.log('Get users successfully!');
+        console.log('Process get users successfully!');
       }
     };
 

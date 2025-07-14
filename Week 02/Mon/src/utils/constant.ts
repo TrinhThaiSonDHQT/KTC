@@ -1,0 +1,1 @@
+export const baseUrl = 'https://server.aptech.io/online-shop/customers'
