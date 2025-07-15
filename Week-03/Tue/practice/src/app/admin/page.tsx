@@ -1,3 +1,4 @@
+// 'use client'
 import Tasks from './task-ssr/page';
 
 const Home = () => {

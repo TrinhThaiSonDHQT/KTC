@@ -16,7 +16,7 @@ export default async function TaskISRDetail({
     headers: defaultHeader,
   });
   const task = await response.json();
-  console.log(task);
+  // console.log(task);
 
   return (
     <div className="bg-white rounded-lg shadow p-6">

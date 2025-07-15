@@ -28,7 +28,7 @@ export default async function Tasks() {
                 className="border-b border-gray-200 py-2 text-gray-800"
               >
                 <Link
-                  href={`task-isr/${task.id}`}
+                  href={`/admin/task-isr/${task.id}`}
                   className="text-blue-600 hover:underline"
                 >
                   {task.title}
