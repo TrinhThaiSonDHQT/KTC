@@ -12,14 +12,14 @@ const UserDetail = () => {
     age: null,
   });
   const usersContext = useContext(UserContext);
-  console.log(id);
+  // console.log(id);
 
   useEffect(() => {
     if (id) {
       const user = usersContext?.users.find((user: User) => {
         return user.id === id;
       });
-      console.log(user);
+      // console.log(user);
 
       if (user) {
         setUser(user);

@@ -1,12 +1,19 @@
 import { useContext } from 'react';
 import { UserContext } from '../contexts';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const UserList = () => {
   const usersContext = useContext(UserContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const navigateToUserPage = (userId: any) => {
-    const link = 'users/' + userId;
+    let link;
+
+    if (location.pathname === '/users') {
+      link = userId;
+    } else {
+      link = 'users/' + userId;
+    }
     navigate(link);
   };
 
