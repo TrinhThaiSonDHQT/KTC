@@ -9,14 +9,15 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { getServerSession } from 'next-auth';
+import { authOptions } from './api/auth/[...nextauth]/route';
 
 export default async function Dashboard() {
-  // const session = await requireAuth();
-
+  const session = await getServerSession(authOptions);
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto p-6">
-        {/* <div className="mb-8 flex items-center justify-between">
+        <div className="mb-8 flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">
               Admin Dashboard
@@ -25,8 +26,8 @@ export default async function Dashboard() {
               Welcome back, {session?.user?.name}
             </p>
           </div>
-          <UserNav user={session.user} />
-        </div> */}
+          <UserNav user={session?.user} />
+        </div>
 
         <Card>
           <CardHeader>
